@@ -17,12 +17,12 @@ if($_GET['search']){
                             where ".$find."
                             roll like '%".$search."%'
                             order by if(strcmp('".$search."',left(name,'".strlen($search)."'))=0,0,1) asc,visit desc limit 20;");
-                            if(!$qry){die("error::".mysqli_error($conn));}
+                            //if(!$qry){die("error::".mysqli_error($conn));}
                             $data=mysqli_fetch_all($qry);
-    if(!$data){echo "<p><br>enter valid info</p>";}
+    //if(!$data){echo "<p><br>enter valid info</p>";}
     $i=0;
     echo '<div id="main">';
-    while($data[$i]){
+    while($data[$i] || $i<=10){
     $image=image($data[$i][1]);
     echo '<a href="visit.php?who='.$data[$i][1].'#">
         <div id="sub" style="background:url('.$image.');">
@@ -55,7 +55,7 @@ else{
 }
     $b=random();
     $query=mysqli_query($conn,"select a.name,b.name from datas a,datas b where a.roll='".$a."' and b.roll='".$b."';");
-    if(!$query){die("error fetching"); }
+    //if(!$query){die("error fetching"); }
     $data=mysqli_fetch_all($query);
     //print_r($data);
 ?>

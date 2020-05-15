@@ -237,18 +237,18 @@ $conn=sql();
             $server[3]."','".
             $server[4]."');";
     $qry=mysqli_query($conn,"insert into clients values ".$query."");
-    if(!$qry){die("error::".mysqli_error($conn));}
+    //if(!$qry){die("error::".mysqli_error($conn));}
     if(!$_COOKIE['new']){
         setcookie("new","yo",time()+86400*10);
         $qry=mysqli_query($conn,"insert into clients_acc values ".$query."");
-        if(!$qry){die("error::".mysqli_error($conn));}
+        //if(!$qry){die("error::".mysqli_error($conn));}
     }
     if($_GET['vote']){
         $query=mysqli_query($conn,"update datas set vote=vote+1 where roll='".$_GET['vote']."';");
-        if(!$query){ echo mysqli_error($conn); }
+        //if(!$query){ echo mysqli_error($conn); }
     }
     $qry=mysqli_query($conn,"select max(sn) from clients_acc;");
-    if(!$qry){die("error::".mysqli_error($conn));}
+    //if(!$qry){die("error::".mysqli_error($conn));}
     $data=mysqli_fetch_all($qry);
     echo '<h4 class="h4_top"><u>'.$data[0][0].'</u></h4>';
     if(stripos($_SERVER['HTTP_USER_AGENT'],"Mobile") || 
