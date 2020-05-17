@@ -21,16 +21,16 @@
         </div>'; 
 ?>
 <?php
-$i=0;
+    $i=0;
     echo '<div id="main">';
     while($i<=10){
-    $image="img";
-    echo '<a href="visit_tmp.php?who=roll'.$i.'#">
-        <div id="sub" style="background:url('.$image.');">
-                name'.$i.'
-        </div>
-        </a>';
-    $i++;
+        $image="img";
+        echo '<a href="visit_tmp.php?who=roll'.$i.'#">
+            <div id="sub" style="background:url('.$image.');">
+                    name'.$i.'
+            </div>
+            </a>';
+        $i++;
     }
     echo "</div>";
 ?>

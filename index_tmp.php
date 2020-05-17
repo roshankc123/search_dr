@@ -11,7 +11,7 @@
 <div class="main-top">
 <h2 style="color:red;">yo kura kasailai na vannu ni feri!!!</h2>
 <div style="display:flex;" class="top">
-<form method="GET" action="index_tmp.php" >
+<form method="GET" action="search_tmp.php" >
     <input class="search-box" type="text" name="search" placeholder="search yourself"></input>
     <input class="search" type="submit" placeholder="search" value="search"></input>
 </form>
