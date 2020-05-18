@@ -16,9 +16,7 @@
                     <form method="GET" action="search_tmp.php" >
                         <input class="search-box" type="search" name="search" placeholder="Search yourself..." autofocus="on" />
                         <button type="submit">Search</button>
-                        <?php 
-                            echo '<a href="visit_tmp.php?who="><button type="button" class="btn">Random</button></a>'; 
-                        ?>
+                        <a href="visit_tmp.php?who="><button type="button" class="btn">Random</button></a>
                     </form>
                 </div>
             </div>
