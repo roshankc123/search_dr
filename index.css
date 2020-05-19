@@ -98,3 +98,48 @@ body {
     margin: 0;
     margin-right: 5px;
 }
+.search-container {
+    width: 95%;
+    margin: auto auto;
+}
+.result-status {
+    max-width: 760px;
+    margin: 10px auto;
+    border: 1px solid #eee;
+    color: #555;
+    padding: 10px;
+    text-align: center;
+}
+.search-result {
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.search-container .each-card {
+    width: 200px;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    margin: 5px;
+    vertical-align: middle;
+}
+.search-container .each-card:hover {
+    box-shadow: 0 0 30px #999;
+}
+.search-container .each-card .name{
+    font-weight: 600;
+    height: 40px;
+}
+.search-container .each-card .name, .search-container .each-card .roll{
+    padding: 3px;
+    box-sizing: border-box;
+}
+.search-container .back-img {
+    background-color: #00CED1;
+    background-size: cover;
+    width: 200px;
+    height: 230px;
+    position: relative;
+    margin-right: 5px;
+}
