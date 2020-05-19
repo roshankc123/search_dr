@@ -18,38 +18,37 @@ body {
     text-align: center;
     width: 100%;
 }
-.home-nav .home-div a {
+.home-div a {
     display: inline-block;
     color: #00CED1;
     text-decoration: none;
     padding: 10px;
     margin-bottom: 20px;
 }
-.home-nav .home-search-items form{
+.home-search-items form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     padding: 0 8px;
 }
-.home-nav .home-search-items form input{
+.home-search-items form input{
     border: 1px solid #00CED1;
     width: 100%;
     box-sizing: border-box;
     padding: 10px 5px;
     font-size: 0.95em;
 }
-.home-nav .home-search-items form button{
+.home-search-items form button{
     cursor: pointer;
     background-color: #00CED1;
     border: none;
     padding: 10px;
     margin: 10px;
 }
-.home-nav .home-search-items form button:hover{
+.home-search-items form button:hover{
     box-shadow: 0 0 2px #00CED1;
 }
-
 .foot {
     width: 100%;
     position: fixed;
@@ -75,39 +74,27 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+.main-search-nav .home-div{
+    width: 100%;
+    text-align: center;
+}
 .main-search-nav .home-div a{
-    display: inline-block;
     font-size: 1.5em;
-    color: #00CED1;
-    text-decoration: none;
-    padding: 10px 20px;
+    margin: 0;
 }
 .main-search-nav .home-search-items {
     padding: 10px;
     width: 560px;
     box-sizing: border-box;
 }
-.main-search-nav .home-search-items form{
+.main-search-nav .home-search-items form {
     display: flex;
     flex-wrap: nowrap;
 }
-.main-search-nav .home-search-items form input {
-    border: 1px solid #999;
-    width: 100%;
+.main-search-nav .home-search-items form input{
     padding: 8px;
-    font-size: 0.85em;
 }
-.main-search-nav .home-search-items form input:hover {
-    box-shadow: 0 0 3px #ddd;
-}
-.main-search-nav .home-search-items form button {
-    cursor: pointer;
-    padding: 8px;
-    font-size: 0.85em;
-    background-color: #00CED1;
-    border: 1px solid #00CED1;
-    margin-right: 3px;
-}
-.main-search-nav .home-search-items form button:hover {
-    box-shadow: 0 0 2px #00CED1;
+.main-search-nav .home-search-items button {
+    margin: 0;
+    margin-right: 5px;
 }
