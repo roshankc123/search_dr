@@ -1,3 +1,10 @@
+<?php
+    include 'api/include.php';
+    $data=new main_get_data;
+    if($_GET['search']){
+        $result=json_decode($data->search_result($_GET['search']));
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,9 +39,20 @@
 
         <div class="search-container">
             <div class="result-status">
-                3 results found
+                <?= $result[0][1]; ?> results found
             </div>
             <div class="search-result">
+                <?php
+                    $i=1;
+                    while($result[$i]){
+                        echo '<a href="" class="each-card">
+                                <div class="back-img" style="background-image: url(\'http://202.70.84.165/img/student/'.$result[$i][1].'.jpg\');"></div>
+                                <div class="roll"># '.$result[$i][1].'</div>
+                                <div class="name">'.$result[$i][0].'</div>
+                            </a>';
+                        $i++;
+                    }
+                ?>
                 <a href="" class="each-card">
                     <div class="back-img" style="background-image: url('http://202.70.84.165/img/student/69BCE15.jpg');"></div>
                     <div class="roll"># PAS075BCT003</div>
@@ -67,27 +85,3 @@
         </div>
     </body>
 </html>
-
-
-<!--
-    
-<?php 
-    echo '<a href="visit_tmp.php?who=">
-                <button class="btn">random</button></a>
-        </div>'; 
-?>
-<?php
-    $i=0;
-    echo '<div id="main">';
-    while($i<=10){
-        $image="img";
-        echo '<a href="visit_tmp.php?who=roll'.$i.'#">
-            <div id="sub" style="background:url('.$image.');">
-                    name'.$i.'
-            </div>
-            </a>';
-        $i++;
-    }
-    echo "</div>";
-?>
-->

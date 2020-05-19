@@ -39,10 +39,11 @@
                 $find.="name like '%".$search_array[$i]."%' or ";
                 $i++;
             }
-            $qry=mysqli_query($this->sql,"select name,roll from `datas` 
-                            where name like '%".$this->search."%' or
-                            ".$find."
-                            roll like '%".$this->search."%'
+            $common_qry="where name like '%".$this->search."%' or
+                        ".$find."
+                        roll like '%".$this->search."%'";  ///2000 if=s for desc and name is search string to remain that count on top of array
+            $qry=mysqli_query($this->sql,"select '".$this->search."' as name,count(name) as roll,2000 as visit from datas ".$common_qry."   
+                            union select name,roll,visit from `datas` ".$common_qry." 
                             order by if(strcmp('".$this->search."',left(name,'".strlen($this->search)."'))=0,0,1) asc,
                             visit desc limit 20;");
             if(!$qry){die("error::".mysqli_error($this->sql));}
