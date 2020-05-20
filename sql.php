@@ -5,10 +5,10 @@
     $i=0;
     $insert="";
     while($json[$i]){
-        $insert.="('0','".$json[$i][0]."','".$json[$i][1]."','".$json[$i][2]."'),";
+        $insert.="(0,'".$json[$i][0]."','".$json[$i][1]."','".$json[$i][2]."'),";
         $i++;
     }
-    $insert.="('0','','','')";
+    $insert.="(0,'','','')";
     $qry=mysqli_query($conn,"insert into datas values ".$insert.";");
     if(!$qry){ die(mysqli_error($conn));}
     else{ echo "data added to database";}
