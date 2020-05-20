@@ -1,2 +1,2 @@
 create database student;
-create table datas (sn int,name varchar(30),roll varchar(12),visit int(11),primary key(sn));
+create table datas (sn int auto_increment,name varchar(30),roll varchar(12),visit int(11),primary key(sn));
