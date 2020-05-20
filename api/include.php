@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
     class local_global{
         function sql_connect(){
             $conn=mysqli_connect("127.0.0.1",

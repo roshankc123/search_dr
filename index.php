@@ -1,6 +1,6 @@
 
 <?php
-//include 'query_of_client.php';
+include 'query_of_client.php';
 $conn=sql();
 if($_GET['search']){
 	echo "<h3>click on photo to visit</h3></div>";
