@@ -12,4 +12,7 @@
     $qry=mysqli_query($conn,"insert into datas values ".$insert.";");
     if(!$qry){ die(mysqli_error($conn));}
     else{ echo "data added to database";}
+    // $qry=mysqli_query($conn,"select name,roll,visit from datas;");
+    // $data=json_encode(mysqli_fetch_all($qry));
+    // echo file_put_contents("sql.json",$data);
 ?>
