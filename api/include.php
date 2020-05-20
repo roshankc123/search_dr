@@ -23,12 +23,6 @@ error_reporting(0);
         public $sql="";
         function main_get_data(){
             $this->sql=$this->sql_connect();
-            // if($_GET['search']){
-            //     $this->search=$this->sql_filter($_GET['search']);
-            // }
-            // else if($_GET['who']){
-            //     $this->search=$this->sql_filter($_GET['who']);
-            // }
         }
 
         function search_result($r_search){
@@ -80,7 +74,7 @@ error_reporting(0);
             $fac=array(
             "4BCE",
             "5BCE",
-            //"6BCE",
+            "6BCE",
             "4BEX",
             "4BGE",
             "4BME",
@@ -91,12 +85,12 @@ error_reporting(0);
             "5BEL",
             "5BGE",
             "5BME",
-            // "6BAM",
-            // "6BCT",
-            // "6BEI",
-            // "6BEL",
-            // "6BGE",
-            // "6BME"
+            "6BAM",
+            "6BCT",
+            "6BEI",
+            "6BEL",
+            "6BGE",
+            "6BME"
             );
             $f=rand(0,11);
             if($f>=0 && $f<=1){

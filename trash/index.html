@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+*{
+    overflow-x: hidden;
+}
+.main-top{
+    background: rgb(197, 214, 238);
+    text-align: center;
+}
+
+.top{
+    display: flex;
+    justify-content: center;
+}
+
+#main{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    background: rgb(197, 214, 238);
+    justify-content: center;
+}
+#sub{
+    height:350px;
+    width:300px;
+    margin:0.2rem;
+    border: 1px solid black;
+}
+
+h2,h3,h4,p{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.search-box,.search,.btn{
+    padding: 0.6rem 2rem;
+    margin: 0 1rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+}
+.search{
+    padding: 0.6rem 2rem;
+    margin: 0 0 0 -1rem;
+}
+
+.pic{
+    background: rgb(19, 18, 18);
+    margin: 0.09rem;
+}
+.foot{
+    background: rgb(255, 0, 0);
+    
+}
+
+.container{
+    display: flex;
+    visibility: hidden;
+
+}
+
+.container:target{
+    visibility: visible;
+}
+
+.close{
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+}
+
+.image1{
+    width: 20%;
+    position: relative;
+    left: 16%;
+    margin: 2rem 3rem;
+    box-shadow: 1px 2px 5px black;
+    border: 1px solid black;
+}
+
+img{
+    width: 100%;
+}
+
+.compo{
+    position: relative;
+    left: 34%;
+    transform: translate(-50%);
+}
+</style>
+</head>
+<body>
+<div class="main-top">
+<h2 style="color:red;">Don't disclose any data.!!!</h2>
+<div style="display:flex;" class="top">
+<form method="GET" action="#" >
+    <input class="search-box" type="text" name="search" placeholder="search yourself"></input>
+    <input class="search" type="submit" placeholder="search" value="search"></input>
+</form>
+<a href="visit.php?who=PAS076BME048"><button class="btn">random</button></a>
+    </div><h4 style="float:right;position:fixed;top:-10px;right:10px;">you are number 923</h4><h3>click on photo to visit</h3>
+    <a href="#popup" id="targeter"><button>
+        Game
+    <utton></a>
+</div>
+
+
+
+<div class="container" id="popup">
+    <a class="close" href="#"><button v>CloseGame</button></a>
+
+    <div class="image1">
+        <img src="./burger.jpeg" alt="pic">
+        <h2>Name:</h2>
+        <!-- <a href="#game" class="compo"><button>This is better</button></a> -->
+    </div>
+    <div class="image1">
+        <img src="./burger.jpeg" alt="pic">
+        <h2>Name:</h2>
+        <!-- <a href="#game" class="compo"><button>This is better</button></a>    </div> -->
+</div>
+</body>
+</html>
