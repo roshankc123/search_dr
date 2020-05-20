@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="index.css"/>
-</head>
-<body>
-<a href="indes_tmp.php"><h3 style="float:left;">Home</h3></a>
-<div class="main-top">
-<h2 style="color:red;">yo kura kasailai na vannu ni feri!!!</h2>
-<div style="display:flex;" class="top">
-<form method="GET" action="search_tmp.php" >
-    <input class="search-box" type="text" name="search" placeholder="search yourself"></input>
-    <input class="search" type="submit" placeholder="search" value="search"></input>
-</form>
-<?php 
-    echo '<a href="visit_tmp.php?who=">
-                <button class="btn">random</button></a>
-        </div>'; 
-?>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="index.css"/>
+    </head>
+    <body>
+        <div class="nav-n-footer">
+            <div class="main-search-nav">
+                <div class="home-div">
+                    <a href="index_tmp.php">Home</a>
+                </div>
+                <div class="home-search-items">
+                    <form method="GET" action="search_tmp.php" >
+                        <input class="search-box" type="search" name="search" placeholder="Search yourself..."/>
+                        <button type="submit">Search</button>
+                        <a href="visit_tmp.php?who="><button type="button" class="btn">Random</button></a>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="profile-container">
+            <div>
+                <div class="name">BIPLOVE LAMICHHANE</div>
+                <div class="image">
+                    <img src="http://202.70.84.165/img/student/69BCE16.jpg" alt="Student picture">
+                </div>
+                <div class="roll">Roll: PAS075BME024</div>
+                <div class="popular">Popularity: 48</div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+<!--
 <?php
     echo '<div class="main_visit"><div style="height:310px;min-width:300px;max-width:300px;">
     <img src="image" /></div><div>
@@ -28,9 +47,4 @@
         "<br>roll:"."roll".
         "<br>ops "."X".' times polpular</h2></div></div>';
 ?>
-<div class="foot">
-<p> by using this site you agreed this data doesnt affect anything
-</p>
-</div>
-</body>
-</html>
+-->

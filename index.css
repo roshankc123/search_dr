@@ -52,7 +52,7 @@ body {
 .foot {
     width: 100%;
     position: fixed;
-    bottom: 0px;
+    bottom: 0;
     right: 0;
     background-color: #eee;
     display: flex;
@@ -60,6 +60,7 @@ body {
     align-items: center;
     padding: 5px;
     box-sizing: border-box;
+    z-index: 10;
 }
 .foot span{
     cursor: pointer;
@@ -147,4 +148,35 @@ body {
     height: 230px;
     position: relative;
     margin-right: 5px;
+}
+
+/* Visit tmp */
+.profile-container {
+    max-width: 560px;
+    padding: 0 10px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+.profile-container>div {
+    text-align: center;
+    padding: 10px 0;
+
+    box-shadow: 0px 0px 24px 0px #ccc;
+    border-radius: 50px;
+}
+.profile-container .name {
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 1.2em;
+    font-family: sans-serif;
+}
+.profile-container .image {
+    padding: 10px;
+}
+.profile-container .image img {
+    max-width: 100%;
+}
+.profile-container .roll, .profile-container .popular { 
+    font-size: 1.2em;
+    padding: 3px;
 }
