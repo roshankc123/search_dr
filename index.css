@@ -111,6 +111,7 @@ body {
     text-align: center;
 }
 .search-result {
+    max-width: 1300px;
     margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
@@ -123,13 +124,17 @@ body {
     text-decoration: none;
     margin: 5px;
     vertical-align: middle;
+    border: 1px solid #ddd;
 }
 .search-container .each-card:hover {
-    box-shadow: 0 0 30px #999;
+    box-shadow: -1px 5px 15px 0px #999;
+}
+.search-container .each-card:empty {
+    visibility: hidden;
 }
 .search-container .each-card .name{
     font-weight: 600;
-    height: 40px;
+    height: fit-content;
 }
 .search-container .each-card .name, .search-container .each-card .roll{
     padding: 3px;
