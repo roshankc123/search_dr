@@ -51,10 +51,10 @@
         }
         function visit($r_visit){
             $this->search=$this->sql_filter($r_visit);
-            $qry=mysqli_query($this->sql,"select name,roll from `datas` 
+            $qry=mysqli_query($this->sql,"select name,roll,visit from `datas` 
                             where roll='".$this->search."' limit 1;");
             if(!$qry){die("error::".mysqli_error($this->sql));}
-            return json_encode(mysqli_fetch_all($qry)[0]);
+            return json_encode(mysqli_fetch_all($qry)[0]);   //gives one dimension array
         }
     }
 
@@ -75,7 +75,7 @@
                     break;
             } 
         }
-        function random(){
+        function get_random(){
             $fac=array(
             "4BCE",
             "5BCE",

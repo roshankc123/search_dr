@@ -23,7 +23,7 @@
                     <form method="GET" action="search_tmp.php" >
                         <input class="search-box" type="search" name="search" placeholder="Search yourself..."/>
                         <button type="submit">Search</button>
-                        <a href="visit_tmp.php?who="><button type="button" class="btn">Random</button></a>
+                        <a href="visit_tmp.php?who=random"><button type="button" class="btn">Random</button></a>
                     </form>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <?php
                     $i=1;
                     while($result[$i]){
-                        echo '<a href="" class="each-card">
+                        echo '<a href="visit_tmp.php?who='.$result[$i][1].'" class="each-card">
                                 <div class="back-img" style="background-image: url(\'http://202.70.84.165/img/student/'.$result[$i][1].'.jpg\');"></div>
                                 <div class="roll"># '.$result[$i][1].'</div>
                                 <div class="name">'.$result[$i][0].'</div>

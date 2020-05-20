@@ -1,3 +1,14 @@
+<?php
+    include 'api/include.php';
+    if($_GET['who']=="random"){
+        $data=new random_roll;
+        $result=json_decode($data->get_random());
+    }
+    else{
+        $data=new main_get_data;
+        $result=json_decode($data->visit($_GET['who']));
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,7 +27,7 @@
                     <form method="GET" action="search_tmp.php" >
                         <input class="search-box" type="search" name="search" placeholder="Search yourself..."/>
                         <button type="submit">Search</button>
-                        <a href="visit_tmp.php?who="><button type="button" class="btn">Random</button></a>
+                        <a href="visit_tmp.php?who=random"><button type="button" class="btn">Random</button></a>
                     </form>
                 </div>
             </div>
@@ -25,26 +36,20 @@
 
         <div class="profile-container">
             <div>
-                <div class="name">BIPLOVE LAMICHHANE</div>
+            <?php if($result){ ?>
+                <div class="name"><?= $result[0] ?></div>
                 <div class="image">
-                    <img src="http://202.70.84.165/img/student/69BCE16.jpg" alt="Student picture">
+                    <img src="<?= strpos($result[1],'AS076')?'no-pic.png':'http://202.70.84.165/img/student/'.$result[1].'.jpg' ?>" alt="Student picture">
                 </div>
-                <div class="roll">Roll: PAS075BME024</div>
-                <div class="popular">Popularity: 48</div>
+                <div class="roll">Roll: <?= $result[1] ?></div>
+                <div class="popular">Popularity: <?= $result[2] ?></div>
+            <?php } 
+                else{
+                    echo "something is wrong!!";
+                }
+            ?>
             </div>
         </div>
 
     </body>
 </html>
-
-
-<!--
-<?php
-    echo '<div class="main_visit"><div style="height:310px;min-width:300px;max-width:300px;">
-    <img src="image" /></div><div>
-            ';
-    echo "<h2>name:"."user name".
-        "<br>roll:"."roll".
-        "<br>ops "."X".' times polpular</h2></div></div>';
-?>
--->

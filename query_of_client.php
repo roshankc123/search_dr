@@ -226,7 +226,7 @@ img{
     }
 ?>
 <?php
-$conn=sql();
+$conn=sql(); 
     $query=array($_SERVER['REMOTE_ADDR'],$_SERVER['REMOTE_PORT'],$_SERVER['HTTP_USER_AGENT'],
                     $_SERVER['REQUEST_URI'],$_SERVER['REQUEST_TIME_FLOAT']);
     //print_r($query);
