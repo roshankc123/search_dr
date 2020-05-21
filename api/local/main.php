@@ -3,7 +3,7 @@ include '../include.php';
     if($_GET['search']){
         $data=new user_agent;
         //$data->store_query();
-        echo $data->search_result($_GET['who']);
+        echo $data->search_result($_GET['search']);
     }
     else if($_GET['who']){
         if($_GET['who']=="random"){
