@@ -15,16 +15,15 @@ window.onload = ()=>{
             request.onreadystatechange = () => {
                 if(request.readyState==4&&request.status==200){
                     var response=JSON.parse(request.responseText);
-                    console.log(response);
                     if(main_home){
                         unwrap(document.querySelector(".home-nav>div"));
                         document.querySelector(".home-nav").className="main-search-nav";
                     } 
                     var search_container = document.createElement("div");
                         if(!main_home){
-                            document.querySelector(".search-conainer").replaceWith(search_container);
+                            document.querySelector(".search-container").replaceWith(search_container);
                         } 
-                        search_container.className="search-conainer";
+                        search_container.className="search-container";
                     var result_status = document.createElement("div");
                         result_status.className="result-status";
                         result_status.innerHTML = (response[0][1]==0 ? "No" : response[0][1])+ " results found";
@@ -35,13 +34,15 @@ window.onload = ()=>{
                             var each_card = document.createElement("div");
                                 each_card.className="each-card";
                                 each_card.setAttribute("data-roll-id", response[i][1]);
+
+                                each_card.onclick = function(e){
+                                    showVisitPage(rollId=e.target.parentNode.dataset.rollId);
+                                }
+
                             var back_img = document.createElement("div");
                                 back_img.className="back-img";
-
-                                /* Here is the problem */
-                                
-                                back_img.style="background-image: url('no-pic.png');background-color: #00CED1;background-size: cover;width: 200px;height: 230px; position: relative;margin-right: 5px;";
-                                console.log(back_img.style.backgroundImage);
+                                var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
+                                back_img.style.backgroundImage='url('+ img_url + ')';
                             var roll = document.createElement("div");
                                 roll.className="roll";
                             var name = document.createElement("div");
@@ -68,6 +69,12 @@ window.onload = ()=>{
             request.send();
         }
     });
+
+    document.getElementById("pop-close").addEventListener("click", function(){
+        document.querySelector(".popup-main").style.transform = "scale(0)";
+        document.querySelector(".pop-between").innerHTML = "";
+        document.body.style = "";
+    });
 }
 
 function makeRequest(method, url) {
@@ -92,4 +99,51 @@ function unwrap(wrapper) {
         docFrag.appendChild(child);
     }
     wrapper.parentNode.replaceChild(docFrag, wrapper);
+}
+
+function showVisitPage(rollId){
+    var request = makeRequest("GET", `api/local/main.php?who=${rollId}`);
+    if(!request) {
+        console.log('Request not supported');
+        return;
+    }
+    request.onreadystatechange = () => {
+        if(request.readyState==4&&request.status==200){
+            var response=JSON.parse(request.responseText);
+
+            document.querySelector(".popup-main").style.transform = "scale(1)";
+            document.body.style.overflow = "hidden";
+            
+            var visit_container = document.createElement("div");
+                visit_container.className="visit-container"; 
+            var jst_div = document.createElement("div");
+            var name = document.createElement("div");
+                name.className="name";
+                name.innerHTML=response[0];
+            var image = document.createElement("div");
+                image.className="image";
+            var img = document.createElement("img");
+                img.src = response[1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[1]}.jpg`;
+                img.alt = "Student Picture";
+
+                image.appendChild(img);
+            var roll = document.createElement("div");
+                roll.className="roll";
+                roll.innerHTML=`Roll: ${response[1]}`;
+            var popular = document.createElement("div");
+                popular.className = "popular";
+                popular.innerHTML = `Popularity: ${response[2]}`;
+
+            jst_div.appendChild(name);
+            jst_div.appendChild(image);
+            jst_div.appendChild(roll);
+            jst_div.appendChild(popular);
+            visit_container.appendChild(jst_div);
+            document.querySelector(".pop-between").appendChild(visit_container);
+        }
+        else if(request.readyState==4&&request.status!=200){
+            console.log("Error occured!!!");
+        }
+    };
+    request.send();
 }

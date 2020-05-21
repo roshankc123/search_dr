@@ -33,5 +33,10 @@ include 'api/include.php';
             </div>
             <span>&times;</span>
         </div> 
+        <div class="popup-main">
+            <div class="pop-between">
+            </div>
+            <button id="pop-close">&times;</button>
+        </div>
     </body>
 </html>
