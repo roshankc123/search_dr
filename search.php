@@ -4,7 +4,12 @@
     if($_GET['search']){
         $data->check_new();
         $data->store_query();
-        $result=json_decode($data->search_result($_GET['search']));
+        if($_GET['offset']){
+            $result=json_decode($data->get_more(1));
+        }
+        else{
+            $result=json_decode($data->search_result($_GET['search']));
+        }
     }
     echo file_get_contents("couNt");
 ?>
@@ -30,12 +35,12 @@
                     </form>
                 </div>
             </div>
-            <div class="foot">
+            <!-- <div class="foot">
                 <div> 
                     By using this site you agreed this data doesnt affect anything
                 </div>
                 <span>&times;</span>
-            </div> 
+            </div>  -->
         </div>
 
         <div class="search-container">
@@ -56,6 +61,7 @@
                     }
                 ?>
             </div>
+            <a href="search.php?search=<?= $_GET['search'] ?>&offset=<?= ($_GET['offset'] && $_GET['search'])?$_GET['offset']+20:20 ?>">more</a> 
         </div>
     </body>
 </html>

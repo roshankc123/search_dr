@@ -25,7 +25,7 @@ error_reporting(0);
             $this->sql=$this->sql_connect();
         }
 
-        function search_result($r_search){
+        function search_result($r_search,$start=0,$count=20){
             $this->search=$this->sql_filter($r_search);
             $search_array=explode(" ",$this->search);
             $i=0;
@@ -40,7 +40,7 @@ error_reporting(0);
             $qry=mysqli_query($this->sql,"select '".$this->search."' as name,count(name) as roll,2000 as visit from datas ".$common_qry."   
                             union select name,roll,visit from `datas` ".$common_qry." 
                             order by if(strcmp('".$this->search."',left(name,'".strlen($this->search)."'))=0,0,1) asc,
-                            visit desc limit 20;");
+                            visit desc limit ".$start.",".$count.";");
             if(!$qry){die("error::".mysqli_error($this->sql));}
             return json_encode(mysqli_fetch_all($qry));
         }
@@ -50,6 +50,19 @@ error_reporting(0);
                             where roll='".$this->search."' limit 1;");
             if(!$qry){die("error::".mysqli_error($this->sql));}
             return json_encode(mysqli_fetch_all($qry)[0]);   //gives one dimension array
+        }
+        function get_more($full=0){
+            $this->search=$this->sql_filter($_GET['search']);
+            $offset=$this->sql_filter($_GET['offset']);
+            if($full){
+                $start=0;
+                $count=$offset+20;
+            }
+            else{
+                $start=$offset;
+                $count=20;
+            }
+            return $this->search_result($this->search,$start,$count);
         }
     }
 
@@ -111,7 +124,7 @@ error_reporting(0);
             $server['req_url']=$_SERVER['REQUEST_URI'];
             $server['time']=$_SERVER['REQUEST_TIME_FLOAT'];
             $server['req_method']=$_SERVER['REQUEST_METHOD'];
-            //$server['u_cookie']=$_SERVER['HTTP_COOKIE'];
+            $server['u_cookie']=$_COOKIE['m_user'];
             $filtred_data=$this->sql_filter(json_encode($server));
             $qry=mysqli_query($this->sql,"insert into user_agent values(0,'".$filtred_data."');");
             if(!$qry){ echo 'error 0'; }
