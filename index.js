@@ -22,9 +22,9 @@ window.onload = ()=>{
                     } 
                     var search_container = document.createElement("div");
                         if(!main_home){
-                            document.querySelector(".search-conainer").replaceWith(search_container);
+                            document.querySelector(".search-container").replaceWith(search_container);
                         } 
-                        search_container.className="search-conainer";
+                        search_container.className="search-container";
                     var result_status = document.createElement("div");
                         result_status.className="result-status";
                         result_status.innerHTML = (response[0][1]==0 ? "No" : response[0][1])+ " results found";
@@ -37,11 +37,10 @@ window.onload = ()=>{
                                 each_card.setAttribute("data-roll-id", response[i][1]);
                             var back_img = document.createElement("div");
                                 back_img.className="back-img";
-
                                 /* Here is the problem */
                                 
-                                back_img.style="background-image: url('no-pic.png');background-color: #00CED1;background-size: cover;width: 200px;height: 230px; position: relative;margin-right: 5px;";
-                                console.log(back_img.style.backgroundImage);
+                               back_img.style.backgroundImage="url('no-pic.png')";
+
                             var roll = document.createElement("div");
                                 roll.className="roll";
                             var name = document.createElement("div");
