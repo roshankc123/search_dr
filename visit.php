@@ -6,9 +6,11 @@
     }
     else{
         $data=new user_agent;
+        $data->check_new();
         $data->store_query();
         $result=json_decode($data->visit($_GET['who']));
     }
+    echo file_get_contents("couNt");
 ?>
 <!DOCTYPE html>
 <html lang="en">

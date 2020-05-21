@@ -2,7 +2,7 @@
 include '../include.php';
     if($_GET['search']){
         $data=new user_agent;
-        //$data->store_query();
+        $data->store_query();
         echo $data->search_result($_GET['search']);
     }
     else if($_GET['who']){
@@ -12,7 +12,7 @@ include '../include.php';
         }
         else{
             $data=new user_agent;
-            //$data->store_query();
+            $data->store_query();
             echo $data->visit($_GET['who']);
         }
     }

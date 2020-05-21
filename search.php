@@ -2,9 +2,11 @@
     include 'api/include.php';
     $data=new user_agent;
     if($_GET['search']){
+        $data->check_new();
         $data->store_query();
         $result=json_decode($data->search_result($_GET['search']));
     }
+    echo file_get_contents("couNt");
 ?>
 <!DOCTYPE html>
 <html lang="en">

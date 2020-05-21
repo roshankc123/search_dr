@@ -125,7 +125,6 @@ function showVisitPage(rollId){
             var img = document.createElement("img");
                 img.src = response[1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[1]}.jpg`;
                 img.alt = "Student Picture";
-
                 image.appendChild(img);
             var roll = document.createElement("div");
                 roll.className="roll";

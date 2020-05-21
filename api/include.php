@@ -116,5 +116,40 @@ error_reporting(0);
             $qry=mysqli_query($this->sql,"insert into user_agent values(0,'".$filtred_data."');");
             if(!$qry){ echo 'error 0'; }
         }
+        function check_new(){
+            if(!$_COOKIE['m_user']){
+                setcookie("m_user",hash("md5",time()+$_SERVER['r_addr']+$_SERVER['port']),time()+86400*10);
+                file_put_contents("couNt",file_get_contents("couNt")+1);
+            }
+        }
+    }
+    class crush_data extends user_agent{
+        private $c_from="";
+        private $c_to="";
+        function crush_data(){
+            $this->c_from=$this->sql_filter($_COOKIE['m_user']);
+            $this->c_to=$this->sql_filter($_GET['crush_to']);
+        }
+        function check_crush(){
+            $qry=mysqli_query($this->sql,"select * from crushes 
+                                            where crush_from='".$this->c_from."' and 
+                                            crush_to='".$this->c_to.";");
+            if(!$qry){echo "something error 3";}  //3 for crush
+            $data=mysqli_fetch_all($qry);
+            if($data){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        function crush_that($roll){
+            if(!$this->check_crush()){
+                $qry=mysqli_query($this->sql,"insert into crushes values
+                                                (0,'".$this->c_from."','".$this->c_to."');");
+                if(!$qry){echo "something error 3.1";return 0;} 
+            }
+            return 1;
+        }
     }
 ?>
