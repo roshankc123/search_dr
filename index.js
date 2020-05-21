@@ -40,7 +40,8 @@ window.onload = ()=>{
 
                                 /* Here is the problem */
                                 
-                                back_img.style.backgroundImage = 'url(no-pic.png)';
+                                back_img.style="background-image: url('no-pic.png');background-color: #00CED1;background-size: cover;width: 200px;height: 230px; position: relative;margin-right: 5px;";
+                                console.log(back_img.style.backgroundImage);
                             var roll = document.createElement("div");
                                 roll.className="roll";
                             var name = document.createElement("div");

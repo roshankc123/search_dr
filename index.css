@@ -141,7 +141,7 @@ body {
     padding: 3px;
     box-sizing: border-box;
 }
-.search-container .back-img {
+.search-container .each-card .name, .search-container .each-card .back-img {
     background-color: #00CED1;
     background-size: cover;
     width: 200px;
