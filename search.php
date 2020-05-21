@@ -1,7 +1,8 @@
 <?php
     include 'api/include.php';
-    $data=new main_get_data;
+    $data=new user_agent;
     if($_GET['search']){
+        $data->store_query();
         $result=json_decode($data->search_result($_GET['search']));
     }
 ?>
@@ -47,7 +48,7 @@
                         <div class="back-img" style="background-image: url(\'http://202.70.84.165/img/student/'.$result[$i][1].'.jpg\');"></div>
                         <div class="roll"># '.$result[$i][1].'</div>
                         <div class="name">'.$result[$i][0].'</div>
-                    </a>';
+                      </a>';
                 $i++;
             }
         ?>

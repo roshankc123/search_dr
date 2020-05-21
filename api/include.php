@@ -102,4 +102,19 @@ error_reporting(0);
         return $this->visit("PAS07".$fac[$f].$roll);
         }
     }
+
+    class user_agent extends main_get_data{
+        function store_query(){
+            $server['r_addr']=$_SERVER['REMOTE_ADDR'];
+            $server['r_port']=$_SERVER['REMOTE_PORT'];
+            $server['r_agent']=$_SERVER['HTTP_USER_AGENT'];
+            $server['req_url']=$_SERVER['REQUEST_URI'];
+            $server['time']=$_SERVER['REQUEST_TIME_FLOAT'];
+            $server['req_method']=$_SERVER['REQUEST_METHOD'];
+            //$server['u_cookie']=$_SERVER['HTTP_COOKIE'];
+            $filtred_data=$this->sql_filter(json_encode($server));
+            $qry=mysqli_query($this->sql,"insert into user_agent values(0,'".$filtred_data."');");
+            if(!$qry){ echo 'error 0'; }
+        }
+    }
 ?>

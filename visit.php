@@ -5,7 +5,8 @@
         $result=json_decode($data->get_random());
     }
     else{
-        $data=new main_get_data;
+        $data=new user_agent;
+        $data->store_query();
         $result=json_decode($data->visit($_GET['who']));
     }
 ?>

@@ -1,3 +1,8 @@
+<?php
+include 'api/include.php';
+    $data=new user_agent;
+    $data->store_query();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

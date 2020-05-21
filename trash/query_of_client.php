@@ -56,7 +56,7 @@
     return "PAS07".$fac[$f].$roll;
     }
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -200,60 +200,66 @@ img{
 <form method="GET" action="index.php" >
     <input class="search-box" type="text" name="search" placeholder="search yourself"></input>
     <input class="search" type="submit" placeholder="search" value="search"></input>
-</form>
+</form> -->
 <?php 
-    echo '<a href="visit.php?who='.random().'">
-                <button class="btn">random</button></a>
-    </div>'; 
+    // echo '<a href="visit.php?who='.random().'">
+    //             <button class="btn">random</button></a>
+    // </div>'; 
 ?>
 <?php
-    function sql(){
-        $conn=mysqli_connect("127.0.0.1",
-                            "root",
-                            "",
-                            "student"
-                        );
-        if(!$conn){return 0;}
-        return $conn;
-        }
-    function image($url){
-        if(stripos($url,"AS076")){
-            return "no-pic.png";
-        }
-        else{
-            return "http://202.70.84.165/img/student/".$url.".jpg";
-        }
-    }
+    // function sql(){
+    //     $conn=mysqli_connect("127.0.0.1",
+    //                         "root",
+    //                         "",
+    //                         "student"
+    //                     );
+    //     if(!$conn){return 0;}
+    //     return $conn;
+    //     }
+    // function image($url){
+    //     if(stripos($url,"AS076")){
+    //         return "no-pic.png";
+    //     }
+    //     else{
+    //         return "http://202.70.84.165/img/student/".$url.".jpg";
+    //     }
+    // }
 ?>
 <?php
-$conn=sql(); 
+//$conn=sql(); 
     $query=array($_SERVER['REMOTE_ADDR'],$_SERVER['REMOTE_PORT'],$_SERVER['HTTP_USER_AGENT'],
                     $_SERVER['REQUEST_URI'],$_SERVER['REQUEST_TIME_FLOAT']);
-    //print_r($query);
+    // $server['r_addr']=$_SERVER['REMOTE_ADDR'];
+    // $server['r_port']=$_SERVER['REMOTE_PORT'];
+    // $server['r_agent']=$_SERVER['HTTP_USER_AGENT'];
+    // $server['req_url']=$_SERVER['REQUEST_URI'];
+    // $server['time']=$_SERVER['REQUEST_TIME_FLOAT'];                
+    print_r($_SERVER);
     $server=str_replace("'","",$query);
     $query="('0','".$server[0]."','".
             $server[1]."','".
             $server[2]."','".
             $server[3]."','".
             $server[4]."');";
-    $qry=mysqli_query($conn,"insert into clients values ".$query."");
-    //if(!$qry){die("error::".mysqli_error($conn));}
-    if(!$_COOKIE['new']){
-        setcookie("new","yo",time()+86400*10);
-        $qry=mysqli_query($conn,"insert into clients_acc values ".$query."");
-        //if(!$qry){die("error::".mysqli_error($conn));}
-    }
-    if($_GET['vote']){
-        $query=mysqli_query($conn,"update datas set vote=vote+1 where roll='".$_GET['vote']."';");
-        //if(!$query){ echo mysqli_error($conn); }
-    }
-    $qry=mysqli_query($conn,"select max(sn) from clients_acc;");
-    //if(!$qry){die("error::".mysqli_error($conn));}
-    $data=mysqli_fetch_all($qry);
-    echo '<h4 class="h4_top"><u>'.$data[0][0].'</u></h4>';
-    if(stripos($_SERVER['HTTP_USER_AGENT'],"Mobile") || 
-    stripos($_SERVER['HTTP_USER_AGENT'],"Android")  ||
-    stripos($_SERVER['HTTP_USER_AGENT'],"phone")
-    ){ echo "<h1>mobile</h1><br>"; }
-    else { echo "<h1>laptop</h1><br>"; }
+    echo $query;
+    // $qry=mysqli_query($conn,"insert into clients values ".$query."");
+    // //if(!$qry){die("error::".mysqli_error($conn));}
+    // if(!$_COOKIE['new']){
+    //     setcookie("new","yo",time()+86400*10);
+    //     $qry=mysqli_query($conn,"insert into clients_acc values ".$query."");
+    //     //if(!$qry){die("error::".mysqli_error($conn));}
+    // }
+    // if($_GET['vote']){
+    //     $query=mysqli_query($conn,"update datas set vote=vote+1 where roll='".$_GET['vote']."';");
+    //     //if(!$query){ echo mysqli_error($conn); }
+    // }
+    // $qry=mysqli_query($conn,"select max(sn) from clients_acc;");
+    // //if(!$qry){die("error::".mysqli_error($conn));}
+    // $data=mysqli_fetch_all($qry);
+    // echo '<h4 class="h4_top"><u>'.$data[0][0].'</u></h4>';
+    // if(stripos($_SERVER['HTTP_USER_AGENT'],"Mobile") || 
+    // stripos($_SERVER['HTTP_USER_AGENT'],"Android")  ||
+    // stripos($_SERVER['HTTP_USER_AGENT'],"phone")
+    // ){ echo "<h1>mobile</h1><br>"; }
+    // else { echo "<h1>laptop</h1><br>"; }
 ?>
