@@ -7,7 +7,7 @@ error_reporting(0);
                                     "",
                                     "student"
                                 );
-            if(!$conn){die("error connecting");}
+            if(!$conn){echo "error 0.1";}
             return $conn;
         }
         function sql_filter($raw){
@@ -44,6 +44,7 @@ error_reporting(0);
             if(!$qry){die("error::".mysqli_error($this->sql));}
             return json_encode(mysqli_fetch_all($qry));
         }
+
         function visit($r_visit){
             $this->search=$this->sql_filter($r_visit);
             $qry=mysqli_query($this->sql,"select name,roll,visit from `datas` 
@@ -51,6 +52,7 @@ error_reporting(0);
             if(!$qry){die("error::".mysqli_error($this->sql));}
             return json_encode(mysqli_fetch_all($qry)[0]);   //gives one dimension array
         }
+
         function get_more($full=0){
             $this->search=$this->sql_filter($_GET['search']);
             $offset=$this->sql_filter($_GET['offset']);
@@ -67,6 +69,9 @@ error_reporting(0);
     }
 
     class random_roll extends main_get_data{
+        function random_roll(){
+            $this->sql=$this->sql_connect();
+        }
         function roll($roll){
             switch (strlen($roll)) {
                 case 1:
@@ -117,6 +122,9 @@ error_reporting(0);
     }
 
     class user_agent extends main_get_data{
+        function user_agent(){
+            $this->sql=$this->sql_connect();
+        }
         function store_query(){
             $server['r_addr']=$_SERVER['REMOTE_ADDR'];
             $server['r_port']=$_SERVER['REMOTE_PORT'];
@@ -140,6 +148,7 @@ error_reporting(0);
         private $c_from="";
         private $c_to="";
         function crush_data(){
+            $this->sql=$this->sql_connect();
             $this->c_from=$this->sql_filter($_COOKIE['m_user']);
             $this->c_to=$this->sql_filter($_GET['crush_to']);
         }
