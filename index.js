@@ -4,6 +4,10 @@ window.onload = ()=>{
     randomAnchor.replaceWith(randomAnchor.lastChild);
     var srch_inpt = document.querySelector("input[type=search]");
 
+    document.querySelector("button.btn").addEventListener("click", function(e){
+        showVisitPage()
+    });
+
     document.getElementById("search-btn").addEventListener("click", function(e){
         e.preventDefault();
         if(srch_inpt.value.length>0){
@@ -101,8 +105,12 @@ function unwrap(wrapper) {
     wrapper.parentNode.replaceChild(docFrag, wrapper);
 }
 
-function showVisitPage(rollId){
+function showVisitPage(rollId=null){
+    if(!rollId){
+        rollId="random";
+    }
     var request = makeRequest("GET", `api/local/main.php?who=${rollId}`);
+    
     if(!request) {
         console.log('Request not supported');
         return;
