@@ -54,7 +54,7 @@ body {
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #eee;
+    background-color: #00000040;
     display: flex;
     justify-content: center;
     align-items: center;
