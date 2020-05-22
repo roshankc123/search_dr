@@ -3,7 +3,7 @@ include '../include.php';
     if($_GET['search']){
         $data=new user_agent;
         $data->check_new();
-        $data->store_query();
+        //$data->store_query();
         if($_GET['offset']){
             echo $data->get_more(0);
         }
