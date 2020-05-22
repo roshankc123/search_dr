@@ -150,6 +150,26 @@ body {
     position: relative;
     margin-right: 5px;
 }
+.search-container .search-result div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.search-container #more {
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px 30px;
+    border: 1px solid #000;
+    margin: 20px 0px 10px 0px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-family: sans-serif;
+}
+.search-container #more:hover {
+    border-radius: 20px;
+}
 
 /* Visit tmp */
 .profile-container {
