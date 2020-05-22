@@ -19,7 +19,7 @@ include '../include.php';
         else{
             $data=new user_agent;
             $data->check_new();
-            $data->store_query();
+            //$data->store_query();
             echo $data->visit($_GET['who']);
         }
     }
