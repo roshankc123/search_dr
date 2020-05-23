@@ -14,7 +14,7 @@ include 'api/include.php';
         <script src="index.js"></script>
     </head>
     <body>
-    <h3><?=  file_get_contents("couNt")   ?></h3>
+        <div class="visitors">Total visitors: <?=  file_get_contents("couNt")   ?></div class="visitors">
         <div class="home-nav">
             <div>
                 <div class="home-div">
@@ -39,6 +39,14 @@ include 'api/include.php';
             <div class="pop-between">
             </div>
             <button id="pop-close">&times;</button>
+            <div id="loader-div">
+                <div class="loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

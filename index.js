@@ -1,5 +1,6 @@
 var each_card_count;
 var total_results;
+var srch_inpt_value;
 window.onload = ()=>{
     var main_home=true;
     var randomAnchor = document.querySelector(".home-search-items form > a");
@@ -15,9 +16,9 @@ window.onload = ()=>{
         each_card_count=0;
         total_results=0;
         if(srch_inpt.value.length>0){
-            var srch_inpt_value = srch_inpt.value;
+            srch_inpt_value = srch_inpt.value;
             var offset=0;
-            var request = makeRequest("GET", `api/local/main.php?search=${srch_inpt.value}`);
+            var request = makeRequest("GET", `api/local/main.php?search=${srch_inpt_value}`);
             if(!request) {
                 console.log('Request not supported');
                 return;
@@ -54,7 +55,7 @@ window.onload = ()=>{
                             more_div.appendChild(more);
 
                             more.onclick=function(e){
-                                addMoreContent(srch_inpt_value, offset+=19);
+                                addMoreContent(offset+=20);
                             }
                         search_container.appendChild(more_div);
                     }
@@ -127,8 +128,8 @@ function showVisitPage(rollId=null,offset=-1){
     request.send();
 }
 
-function addMoreContent(search_query, offset){
-    var request = makeRequest("GET", `api/local/main.php?search=${search_query}&offset=${offset}`);
+function addMoreContent(offset, for_=null){
+    var request = makeRequest("GET", `api/local/main.php?search=${srch_inpt_value}&offset=${offset}`);
     
     if(!request) {
         console.log('Request not supported');
@@ -139,8 +140,12 @@ function addMoreContent(search_query, offset){
             var response=JSON.parse(request.responseText);
             loopForEachCard(response, document.querySelector('.search-container .search-result'))
 
-            if(total_results<=(offset+19)){
+            if(total_results<=(offset+20)){
                 document.querySelector(".search-container .more-div").remove();
+            }
+            if(for_){
+                document.querySelector(".loader").style.display="none";
+                visitContentBuilder(response[0], offset);
             }
         }
         else if(request.readyState==4&&request.status!=200){
@@ -151,13 +156,12 @@ function addMoreContent(search_query, offset){
 }
 
 function loopForEachCard(response, appending_parent){
-    var i=0;
-    try{parseInt(response[0][1]);i=1;} catch{}
+    var i = isNaN(response[0][1]-0) ? 0 : 1;
     for(i; response[i]; i++){
         var each_card = document.createElement("div");
             each_card.className="each-card";
             each_card.setAttribute("data-roll-id", response[i][1]);
-            each_card.setAttribute("data-count", each_card_count+=1);                           ///to count the data see line 119
+            each_card.setAttribute("data-count", each_card_count+=1);                           
             each_card.onclick = function(e){
                 showVisitPage(rollId=e.target.parentNode.dataset.rollId,parseInt(this.dataset.count));
             }
@@ -188,12 +192,19 @@ function loopForEachCard(response, appending_parent){
 function prevOrNextVisit(offset, for_="prev"){
     offset = for_=="prev" ? offset-1 : offset+1;
     var next_div = document.querySelector(`.search-container>.search-result>.each-card[data-count=\"${offset}\"]`);
-    var datas = [
-        next_div.childNodes[2].innerHTML,
-        next_div.dataset.rollId,
-        next_div.childNodes[3].value
-    ];
-    visitContentBuilder(datas, offset, for_);
+    console.log(next_div);
+    if(!next_div){
+        addMoreContent(offset, for_);
+        document.querySelector(".visit-container").replaceWith(document.querySelector(".loader"));
+        document.querySelector(".loader").style.display="inline-block";
+    } else {
+        var datas = [
+            next_div.childNodes[2].innerHTML,
+            next_div.dataset.rollId,
+            next_div.childNodes[3].value
+        ];
+        visitContentBuilder(datas, offset, for_);
+    }    
 }
 
 function visitContentBuilder(response, offset, for_=null){

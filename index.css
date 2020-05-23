@@ -5,6 +5,13 @@ body {
 .hidden {
     visibility: hidden;
 }
+.visitors {
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    text-shadow: 1px 1px #00CED1;
+}
 .home-nav {
     position: fixed;
     height: 70%;
@@ -259,6 +266,8 @@ body {
     position: relative;
     height: 500px;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 .visit-container {
     background-color: #fff;
@@ -285,3 +294,60 @@ body {
 #pop-close:hover {
     background-color: #eee;
 }
+/* Loader */
+.loader {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.loader div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loader div:nth-child(1) {
+    left: 8px;
+    animation: loader1 0.6s infinite;
+}
+.loader div:nth-child(2) {
+    left: 8px;
+    animation: loader2 0.6s infinite;
+}
+.loader div:nth-child(3) {
+    left: 32px;
+    animation: loader2 0.6s infinite;
+}
+.loader div:nth-child(4) {
+    left: 56px;
+    animation: loader3 0.6s infinite;
+}
+@keyframes loader1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+    }
+    @keyframes loader3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+    }
+    @keyframes loader2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+  
