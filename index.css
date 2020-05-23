@@ -2,6 +2,9 @@ body {
     margin: 0;
     padding: 0;
 }
+.hidden {
+    visibility: hidden;
+}
 .home-nav {
     position: fixed;
     height: 70%;
@@ -183,6 +186,7 @@ body {
     padding: 10px 0;
     box-shadow: 0px 0px 24px 0px #ccc;
     border-radius: 50px;
+    position: relative;
 }
 .profile-container .name, .visit-container .name {
     padding: 10px 0;
@@ -199,6 +203,38 @@ body {
 .profile-container .roll, .profile-container .popular, .visit-container .roll, .visit-container .popular { 
     font-size: 1.2em;
     padding: 3px;
+}
+.next-prev-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.next-prev-div #next, .next-prev-div #prev {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 2.5em;
+    background-color: transparent;
+    display: inline-block;
+    padding: 0;
+    padding: 0 10px;
+    font-family: 'Times New Roman', Times, serif;
+    border: 0;
+    background-color: #00000020;
+}
+.next-prev-div #prev::before{
+    content: '\003c';
+}
+.next-prev-div #next::before{
+    content: '\003e';
+}
+.next-prev-div #prev:hover, .next-prev-div #next:hover {
+    background-color: #00000030;
 }
 
 /* Popup */
@@ -229,6 +265,7 @@ body {
     padding: 5px 0;
     border-radius: 50px;
     box-shadow: 0px 0px 10px 0px #fff;
+    position: relative;
 }
 #pop-close {
     background-color: #fff;
