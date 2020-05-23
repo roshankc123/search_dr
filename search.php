@@ -11,7 +11,6 @@
             $result=json_decode($data->search_result($_GET['search']));
         }
     }
-    echo file_get_contents("couNt");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +21,7 @@
         <link rel="stylesheet" href="index.css"/>
     </head>
     <body>
+    <h3><?=  file_get_contents("couNt")   ?></h3>
         <div class="nav-n-footer">
             <div class="main-search-nav">
                 <div class="home-div">

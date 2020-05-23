@@ -3,7 +3,6 @@ include 'api/include.php';
     $data=new user_agent;
     $data->check_new();
     $data->store_query();
-    echo file_get_contents("couNt");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +14,7 @@ include 'api/include.php';
         <script src="index.js"></script>
     </head>
     <body>
+    <h3><?=  file_get_contents("couNt")   ?></h3>
         <div class="home-nav">
             <div>
                 <div class="home-div">
