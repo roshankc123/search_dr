@@ -36,32 +36,7 @@ window.onload = ()=>{
                     var search_result = document.createElement("div");
                         search_result.className="search-result";
                         
-                        for(var i=1; response[i]; i++){
-                            var each_card = document.createElement("div");
-                                each_card.className="each-card";
-                                each_card.setAttribute("data-roll-id", response[i][1]);
-
-                                each_card.onclick = function(e){
-                                    showVisitPage(rollId=e.target.parentNode.dataset.rollId);
-                                }
-
-                            var back_img = document.createElement("div");
-                                back_img.className="back-img";
-                                var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
-                                back_img.style.backgroundImage='url('+ img_url + ')';
-                            var roll = document.createElement("div");
-                                roll.className="roll";
-                            var name = document.createElement("div");
-                                name.className="name";
-
-                            roll.innerHTML=response[i][1];
-                            name.innerHTML=response[i][0];
-
-                            each_card.appendChild(back_img);
-                            each_card.appendChild(roll);
-                            each_card.appendChild(name);
-                            search_result.appendChild(each_card);
-                        }
+                        loopForEachCard(response, search_result);
                     search_container.appendChild(result_status);
                     search_container.appendChild(search_result);
 
@@ -181,33 +156,7 @@ function addMoreContent(search_query, offset, total_results){
     request.onreadystatechange = () => {
         if(request.readyState==4&&request.status==200){
             var response=JSON.parse(request.responseText);
-            
-            for(var i=0; response[i]; i++){
-                var each_card = document.createElement("div");
-                    each_card.className="each-card";
-                    each_card.setAttribute("data-roll-id", response[i][1]);
-
-                    each_card.onclick = function(e){
-                        showVisitPage(rollId=e.target.parentNode.dataset.rollId);
-                    }
-
-                var back_img = document.createElement("div");
-                    back_img.className="back-img";
-                    var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
-                    back_img.style.backgroundImage='url('+ img_url + ')';
-                var roll = document.createElement("div");
-                    roll.className="roll";
-                var name = document.createElement("div");
-                    name.className="name";
-
-                roll.innerHTML=response[i][1];
-                name.innerHTML=response[i][0];
-
-                each_card.appendChild(back_img);
-                each_card.appendChild(roll);
-                each_card.appendChild(name);
-                document.querySelector(".search-container .search-result").appendChild(each_card);
-            }
+            loopForEachCard(response, document.querySelector('.search-container .search-result'))
 
             if(total_results<=(offset+19)){
                 document.querySelector(".search-container .more-div").remove();
@@ -218,4 +167,35 @@ function addMoreContent(search_query, offset, total_results){
         }
     };
     request.send();
+}
+
+function loopForEachCard(response, appending_parent){
+    var i=0;
+    try{parseInt(response[0][1]);i=1;} catch{}
+    for(i; response[i]; i++){
+        var each_card = document.createElement("div");
+            each_card.className="each-card";
+            each_card.setAttribute("data-roll-id", response[i][1]);
+
+            each_card.onclick = function(e){
+                showVisitPage(rollId=e.target.parentNode.dataset.rollId);
+            }
+
+        var back_img = document.createElement("div");
+            back_img.className="back-img";
+            var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
+            back_img.style.backgroundImage='url('+ img_url + ')';
+        var roll = document.createElement("div");
+            roll.className="roll";
+        var name = document.createElement("div");
+            name.className="name";
+
+        roll.innerHTML=response[i][1];
+        name.innerHTML=response[i][0];
+
+        each_card.appendChild(back_img);
+        each_card.appendChild(roll);
+        each_card.appendChild(name);
+        appending_parent.appendChild(each_card);
+    }
 }
