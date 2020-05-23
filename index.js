@@ -11,6 +11,8 @@ window.onload = ()=>{
     document.getElementById("search-btn").addEventListener("click", function(e){
         e.preventDefault();
         if(srch_inpt.value.length>0){
+            var srch_inpt_value = srch_inpt.value;
+            var offset=0;
             var request = makeRequest("GET", `api/local/main.php?search=${srch_inpt.value}`);
             if(!request) {
                 console.log('Request not supported');
@@ -62,6 +64,20 @@ window.onload = ()=>{
                         }
                     search_container.appendChild(result_status);
                     search_container.appendChild(search_result);
+
+                    if(response[0][1]>19){
+                        var more_div = document.createElement("div");
+                            more_div.className="more-div";
+                        var more = document.createElement("button");
+                            more.innerHTML="More";
+                            more.id="more";
+                            more_div.appendChild(more);
+
+                            more.onclick=function(e){
+                                addMoreContent(srch_inpt_value, offset+=20, response[0][1]);
+                            }
+                        search_container.appendChild(more_div);
+                    }
                     document.body.appendChild(search_container);
                     
                     main_home=false;
@@ -147,6 +163,55 @@ function showVisitPage(rollId=null){
             jst_div.appendChild(popular);
             visit_container.appendChild(jst_div);
             document.querySelector(".pop-between").appendChild(visit_container);
+        }
+        else if(request.readyState==4&&request.status!=200){
+            console.log("Error occured!!!");
+        }
+    };
+    request.send();
+}
+
+function addMoreContent(search_query, offset, total_results){
+    var request = makeRequest("GET", `api/local/main.php?search=${search_query}&offset=${offset}`);
+    
+    if(!request) {
+        console.log('Request not supported');
+        return;
+    }
+    request.onreadystatechange = () => {
+        if(request.readyState==4&&request.status==200){
+            var response=JSON.parse(request.responseText);
+            
+            for(var i=0; response[i]; i++){
+                var each_card = document.createElement("div");
+                    each_card.className="each-card";
+                    each_card.setAttribute("data-roll-id", response[i][1]);
+
+                    each_card.onclick = function(e){
+                        showVisitPage(rollId=e.target.parentNode.dataset.rollId);
+                    }
+
+                var back_img = document.createElement("div");
+                    back_img.className="back-img";
+                    var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
+                    back_img.style.backgroundImage='url('+ img_url + ')';
+                var roll = document.createElement("div");
+                    roll.className="roll";
+                var name = document.createElement("div");
+                    name.className="name";
+
+                roll.innerHTML=response[i][1];
+                name.innerHTML=response[i][0];
+
+                each_card.appendChild(back_img);
+                each_card.appendChild(roll);
+                each_card.appendChild(name);
+                document.querySelector(".search-container .search-result").appendChild(each_card);
+            }
+
+            if(total_results<=(offset+19)){
+                document.querySelector(".search-container .more-div").remove();
+            }
         }
         else if(request.readyState==4&&request.status!=200){
             console.log("Error occured!!!");

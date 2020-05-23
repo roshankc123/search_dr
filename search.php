@@ -60,10 +60,17 @@
                         $i++;
                     }
                 ?>
-                <div>
-                    <a href="search.php?search=<?= $_GET['search'] ?>&offset=<?= ($_GET['offset'] && $_GET['search'])?$_GET['offset']+20:20 ?>" id="more">More</a>
-                </div> 
             </div>
+            <?php
+                $offset=($_GET['search'] && $_GET['offset'])?$_GET['offset']:0;
+                if($result[0][1]>$offset){
+                    $offset += 20;
+                    echo "
+                    <div class='more-div'>
+                        <a href='search.php?search={$_GET['search']}&offset={$offset}' id='more'>More</a>
+                    </div>";
+                }
+            ?>
         </div>
     </body>
 </html>
