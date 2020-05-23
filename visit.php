@@ -10,6 +10,10 @@
         $data->store_query();
         $result=json_decode($data->visit($_GET['who']));
     }
+    if($_GET['count'] && $_GET['search']){
+        $f_count=$data->sql_filter($_GET['count']);
+        $for_next=json_decode($data->search_result($_GET['search'],0,$_GET['count']+2));
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +56,7 @@
                 }
             ?>
             </div>
+            <div><a href="visit.php?who=<?= $for_next[$f_count+1][1]; ?>&search=<?=$_GET['search']?>&count=<?=$_GET['count']+1?>">next</a></div>
         </div>
 
     </body>

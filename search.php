@@ -52,7 +52,7 @@
                     $i=1;
                     while($result[$i]){
                         $image=strpos($result[$i][1],'AS076')?'no-pic.png':'http://202.70.84.165/img/student/'.$result[$i][1].'.jpg';
-                        echo '<a href="visit.php?who='.$result[$i][1].'" class="each-card">
+                        echo '<a href="visit.php?who='.$result[$i][1].'&search='.$_GET['search'].'&count='.$i.'" class="each-card">
                                 <div class="back-img" style="background-image: url(\''.$image.'\');"></div>
                                 <div class="roll"># '.$result[$i][1].'</div>
                                 <div class="name">'.$result[$i][0].'</div>

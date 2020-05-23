@@ -96,7 +96,7 @@ function unwrap(wrapper) {
     wrapper.parentNode.replaceChild(docFrag, wrapper);
 }
 
-function showVisitPage(rollId=null){
+function showVisitPage(rollId=null,offset=-1){
     if(!rollId){
         rollId="random";
     }
@@ -116,6 +116,7 @@ function showVisitPage(rollId=null){
             var visit_container = document.createElement("div");
                 visit_container.className="visit-container"; 
             var jst_div = document.createElement("div");
+                jst_div.setAttribute("data-count", offset);                        ////here
             var name = document.createElement("div");
                 name.className="name";
                 name.innerHTML=response[0];
@@ -138,6 +139,7 @@ function showVisitPage(rollId=null){
             jst_div.appendChild(popular);
             visit_container.appendChild(jst_div);
             document.querySelector(".pop-between").appendChild(visit_container);
+            next();
         }
         else if(request.readyState==4&&request.status!=200){
             console.log("Error occured!!!");
@@ -176,9 +178,9 @@ function loopForEachCard(response, appending_parent){
         var each_card = document.createElement("div");
             each_card.className="each-card";
             each_card.setAttribute("data-roll-id", response[i][1]);
-
+            each_card.setAttribute("data-count", i);                           ///to count the data see line 119
             each_card.onclick = function(e){
-                showVisitPage(rollId=e.target.parentNode.dataset.rollId);
+                showVisitPage(rollId=e.target.parentNode.dataset.rollId,this.dataset.count);
             }
 
         var back_img = document.createElement("div");
@@ -198,4 +200,10 @@ function loopForEachCard(response, appending_parent){
         each_card.appendChild(name);
         appending_parent.appendChild(each_card);
     }
+}
+function next(){
+    var this_count=document.getElementsByClassName('visit-container')[0].childNodes[0].dataset.count;
+    var nextid=document.getElementsByClassName('search-result')[0].childNodes[this_count].dataset.rollId;
+    console.log(nextid);
+    //document.getElementsByClassName('search-result')[0].childNodes[8].dataset.rollId;
 }
