@@ -63,8 +63,8 @@
             </div>
             <?php
                 $offset=($_GET['search'] && $_GET['offset'])?$_GET['offset']:0;
+                $offset+=20;
                 if($result[0][1]>$offset){
-                    $offset += 20;
                     echo "
                     <div class='more-div'>
                         <a href='search.php?search={$_GET['search']}&offset={$offset}' id='more'>More</a>
