@@ -39,7 +39,7 @@ include 'api/include.php';
             <div class="pop-between">
             </div>
             <button id="pop-close">&times;</button>
-            <div id="loader-div">
+            <div id="loader-div" class="loader-div">
                 <div class="loader">
                     <div></div>
                     <div></div>

@@ -144,7 +144,10 @@ function addMoreContent(offset, for_=null){
                 document.querySelector(".search-container .more-div").remove();
             }
             if(for_){
-                document.querySelector(".loader").style.display="none";
+                var loader_=document.querySelector(".loader");
+                if(loader_){
+                    loader_.style.display="none";
+                }
                 visitContentBuilder(response[0], offset);
             }
         }
@@ -195,8 +198,11 @@ function prevOrNextVisit(offset, for_="prev"){
     console.log(next_div);
     if(!next_div){
         addMoreContent(offset, for_);
-        document.querySelector(".visit-container").replaceWith(document.querySelector(".loader"));
-        document.querySelector(".loader").style.display="inline-block";
+        var loader_=document.querySelector(".loader");
+        document.querySelector(".visit-container").replaceWith(loader_);
+        if(loader_){
+            loader_.style.display="inline-block";
+        }
     } else {
         var datas = [
             next_div.childNodes[2].innerHTML,
