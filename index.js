@@ -145,9 +145,8 @@ function addMoreContent(offset, for_=null){
             }
             if(for_){
                 var loader_=document.querySelector(".loader");
-                if(loader_){
-                    loader_.style.display="none";
-                }
+                document.getElementById("loader-div").appendChild(loader_);
+                loader_.style.display="none";
                 visitContentBuilder(response[0], offset);
             }
         }
@@ -195,14 +194,11 @@ function loopForEachCard(response, appending_parent){
 function prevOrNextVisit(offset, for_="prev"){
     offset = for_=="prev" ? offset-1 : offset+1;
     var next_div = document.querySelector(`.search-container>.search-result>.each-card[data-count=\"${offset}\"]`);
-    console.log(next_div);
     if(!next_div){
         addMoreContent(offset, for_);
         var loader_=document.querySelector(".loader");
         document.querySelector(".visit-container").replaceWith(loader_);
-        if(loader_){
-            loader_.style.display="inline-block";
-        }
+        loader_.style.display="inline-block";
     } else {
         var datas = [
             next_div.childNodes[2].innerHTML,
