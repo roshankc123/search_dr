@@ -5,7 +5,7 @@ window.onload = ()=>{
     var srch_inpt = document.querySelector("input[type=search]");
 
     document.querySelector("button.btn").addEventListener("click", function(e){
-        showVisitPage()
+        showVisitPage();
     });
 
     document.getElementById("search-btn").addEventListener("click", function(e){

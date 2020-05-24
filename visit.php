@@ -14,7 +14,7 @@ $check=0;
     if($_GET['count'] && $_GET['search']){
         $check=1;
         $f_count=$data->sql_filter($_GET['count']);
-        $for_next=json_decode($data->search_result($_GET['search'],0,$_GET['count']+2));
+        $for_next=json_decode($data->search_result($_GET['search'],0,$f_count+2));
     }
 ?>
 <!DOCTYPE html>

@@ -20,6 +20,10 @@ include '../include.php';
             $data=new user_agent;
             $data->check_new(); 
             //$data->store_query();
+            // if($_GET['count']){
+            //     $f_count=$data->sql_filter($_GET['count']);
+            //     $for_next=json_decode($data->search_result($_GET['search'],0,$_GET['count']+2));
+            // }
             echo $data->visit($_GET['who']);                ////to visit a profile
         }
     }
