@@ -58,7 +58,7 @@ $check=0;
                 }
             ?>
             </div>
-        <?php if($check==1 ){ 
+        <?php if($check==1 || $_GET['who']!="random"){ 
                 if($_GET['count']>1 && $for_next[$f_count-1][1]){    
             ?>
                 <div><a href="visit.php?who=<?= $for_next[$f_count-1][1]; ?>&search=<?=$_GET['search']?>&count=<?=$_GET['count']-1?>">prev</a></div>
@@ -68,7 +68,11 @@ $check=0;
             <div><a href="visit.php?who=<?= $for_next[$f_count+1][1]; ?>&search=<?=$_GET['search']?>&count=<?=$_GET['count']+1?>">next</a></div>
         <?php
                 } 
-            } ?>
+            } 
+            else if($_GET['who']=="random"){
+                ?>
+                <div><a href="visit.php?who=random">next</a></div>
+           <?php } ?>
         </div>
 
     </body>
