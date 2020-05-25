@@ -8,7 +8,7 @@ window.onload = ()=>{
     var srch_inpt = document.querySelector("input[type=search]");
 
     document.querySelector("button.btn").addEventListener("click", function(e){
-        showVisitPage();
+        randomVisitPage();
     });
 
     document.getElementById("search-btn").addEventListener("click", function(e){
@@ -102,12 +102,27 @@ function unwrap(wrapper) {
     wrapper.parentNode.replaceChild(docFrag, wrapper);
 }
 
-function showVisitPage(rollId=null,offset=-1){
-    if(!rollId){
-        rollId="random";
-    }
-    var request = makeRequest("GET", `api/local/main.php?who=${rollId}`);
-    
+function showVisitForOffline(offset){
+    var div = document.querySelector(`.search-container>.search-result>.each-card[data-count=\"${offset}\"]`);
+    var datas = [
+        div.childNodes[2].innerHTML,
+        div.dataset.rollId,
+        div.childNodes[3].value
+    ];
+    visitContentBuilder(datas, offset);
+
+    document.querySelector(".popup-main").style.transform = "scale(1)";
+    document.body.style.overflow = "hidden";
+}
+
+function randomVisitPage(){
+    var request = makeRequest("GET", "api/local/main.php?who=random");
+    document.querySelector(".popup-main").style.transform = "scale(1)";
+    document.body.style.overflow = "hidden";
+    var loader_=document.querySelector(".loader");
+    try{document.querySelector(".visit-container").replaceWith(loader_);} catch {}
+    loader_.style.display="inline-block";
+
     if(!request) {
         console.log('Request not supported');
         return;
@@ -115,11 +130,11 @@ function showVisitPage(rollId=null,offset=-1){
     request.onreadystatechange = () => {
         if(request.readyState==4&&request.status==200){
             var response=JSON.parse(request.responseText);
-
-            document.querySelector(".popup-main").style.transform = "scale(1)";
-            document.body.style.overflow = "hidden";
             
-            visitContentBuilder(response, offset);
+            document.getElementById("loader-div").appendChild(loader_);
+            loader_.style.display="none";
+
+            visitContentBuilder(response, offset=1, for_="random");
         }
         else if(request.readyState==4&&request.status!=200){
             console.log("Error occured!!!");
@@ -165,7 +180,7 @@ function loopForEachCard(response, appending_parent){
             each_card.setAttribute("data-roll-id", response[i][1]);
             each_card.setAttribute("data-count", each_card_count+=1);                           
             each_card.onclick = function(e){
-                showVisitPage(rollId=e.target.parentNode.dataset.rollId,parseInt(this.dataset.count));
+                showVisitForOffline(parseInt(this.dataset.count));
             }
 
         var back_img = document.createElement("div");
@@ -211,8 +226,8 @@ function prevOrNextVisit(offset, for_="prev"){
 
 function visitContentBuilder(response, offset, for_=null){
     var img_src = response[1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[1]}.jpg`;
-
-    if(for_){
+    console.log(for_);
+    if(for_ && for_!="random"){
         document.querySelector(".visit-container div:first-child div.name").innerHTML=response[0];
         document.querySelector(".visit-container div:first-child div.image img").src=img_src;
         document.querySelector(".visit-container div:first-child div.roll").innerHTML=`Roll: ${response[1]}`;
@@ -265,6 +280,10 @@ function visitContentBuilder(response, offset, for_=null){
         prevOrNextVisit(offset);
     };
     next.onclick=function(e){
-        prevOrNextVisit(offset, "next");
+        if(for_=="random"){
+            randomVisitPage();
+        } else {
+            prevOrNextVisit(offset, "next");
+        }
     };
 }
