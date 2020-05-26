@@ -14,7 +14,9 @@ include 'api/include.php';
         <script src="index.js"></script>
     </head>
     <body>
-        <div class="visitors">Total visitors: <?=  file_get_contents("couNt")   ?></div class="visitors">
+        <div class="visitors">
+            <span>Total visitors: <?=  file_get_contents("couNt")   ?></span>
+        </div>
         <div class="home-nav">
             <div>
                 <div class="home-div">
@@ -33,7 +35,6 @@ include 'api/include.php';
             <div> 
                 By using this site you agreed this data doesnt affect anything
             </div>
-            <span>&times;</span>
         </div> 
         <div class="popup-main">
             <div class="pop-between">

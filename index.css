@@ -5,12 +5,42 @@ body {
 .hidden {
     visibility: hidden;
 }
+input:focus, button:focus {
+    outline: 1px solid #0084FF;
+}
 .visitors {
-    font-size: 1.2rem;
     position: fixed;
-    bottom: 50px;
-    right: 10px;
-    text-shadow: 1px 1px #00CED1;
+    top: 20;
+    left: 0;
+    cursor: pointer;
+    z-index: 1000;
+    width: 1.8rem;
+    height: 1.5rem;
+}
+.visitors::before {
+    content: '\003e';
+    font-size: 3rem;
+    position: absolute;
+    top: -17px;
+    color: #00CED1;
+}
+.visitors:hover span {
+    left: 0;
+}
+.visitors span{
+    display: block;
+    color: #00CED1;
+    left: -999px;
+    width: 130px;
+    font-size: 1.2rem;
+    position: absolute;
+    transition: left linear 0.3s;
+    z-index: 1001;
+    background-color: #fff;
+    padding: 5px 0;
+    padding-left: 2px;
+    text-decoration: underline;
+    top: -5px;
 }
 .home-nav {
     position: fixed;
@@ -53,7 +83,8 @@ body {
     cursor: pointer;
     background-color: #00CED1;
     border: none;
-    padding: 10px;
+    width: 70px;
+    height: 35px;
     margin: 10px;
 }
 .home-search-items form button:hover{
@@ -169,7 +200,8 @@ body {
     color: #000;
     text-decoration: none;
     display: inline-block;
-    padding: 20px 30px;
+    height: 40px;
+    width: 80px;
     border: 1px solid #000;
     margin: 0px 0px 40px 0px;
     background-color: #fff;
@@ -351,3 +383,19 @@ body {
     }
 }
   
+/* Small spin loader */
+.small-loader {
+    display: inline-block;
+    border: 2px solid #eee;
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 1.5s linear infinite; /* Safari */
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

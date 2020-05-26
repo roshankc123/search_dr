@@ -21,7 +21,9 @@
         <link rel="stylesheet" href="index.css"/>
     </head>
     <body>
-    <h3><?=  file_get_contents("couNt")   ?></h3>
+        <div class="visitors">
+            <span>Total visitors: <?=  file_get_contents("couNt")   ?></span>
+        </div>
         <div class="nav-n-footer">
             <div class="main-search-nav">
                 <div class="home-div">

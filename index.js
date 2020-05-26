@@ -7,6 +7,13 @@ window.onload = ()=>{
     randomAnchor.replaceWith(randomAnchor.lastChild);
     var srch_inpt = document.querySelector("input[type=search]");
 
+    var data_inform_close = document.createElement("span");
+        data_inform_close.innerHTML="&times;";
+    document.querySelector(".foot").appendChild(data_inform_close);
+    data_inform_close.onclick=function(){
+        this.parentNode.style.display="none";
+    }
+
     document.querySelector("button.btn").addEventListener("click", function(e){
         randomVisitPage();
     });
@@ -18,6 +25,8 @@ window.onload = ()=>{
         if(srch_inpt.value.length>0){
             srch_inpt_value = srch_inpt.value;
             var offset=0;
+            this.innerHTML="<div class='small-loader'></div>";
+            this.setAttribute("disabled", "");
             var request = makeRequest("GET", `api/local/main.php?search=${srch_inpt_value}`);
             if(!request) {
                 console.log('Request not supported');
@@ -27,6 +36,8 @@ window.onload = ()=>{
                 if(request.readyState==4&&request.status==200){
                     var response=JSON.parse(request.responseText);
                     total_results = response[0][1];
+                    this.innerHTML="Search";
+                    this.removeAttribute("disabled");
                     if(main_home){
                         unwrap(document.querySelector(".home-nav>div"));
                         document.querySelector(".home-nav").className="main-search-nav";
@@ -55,6 +66,8 @@ window.onload = ()=>{
                             more_div.appendChild(more);
 
                             more.onclick=function(e){
+                                this.innerHTML="<div class='small-loader' style='border: 2px solid #000; border-top: 2px solid #fff;'></div>";
+                                this.setAttribute("disabled", "");
                                 addMoreContent(offset+=20);
                             }
                         search_container.appendChild(more_div);
@@ -153,6 +166,8 @@ function addMoreContent(offset, for_=null){
     request.onreadystatechange = () => {
         if(request.readyState==4&&request.status==200){
             var response=JSON.parse(request.responseText);
+            document.getElementById("more").innerHTML="More";
+            document.getElementById("more").removeAttribute("disabled");
             loopForEachCard(response, document.querySelector('.search-container .search-result'))
 
             if(total_results<=(offset+20)){
