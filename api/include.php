@@ -2,10 +2,10 @@
 error_reporting(0);
     class local_global{
         function sql_connect(){
-            $conn=mysqli_connect("127.0.0.1",
-                                    "root",
-                                    "",
-                                    "student"
+            $conn=mysqli_connect("db_address",
+                                    "db_name",
+                                    "db_pass",
+                                    "table_name"
                                 );
             if(!$conn){echo "error 0.1";}
             return $conn;
