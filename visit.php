@@ -50,7 +50,7 @@ $check=0;
             <?php if($result){ ?>
                 <div class="name"><?= $result[0] ?></div>
                 <div class="image">
-                    <img src="<?= strpos($result[1],'AS076')?'no-pic.png':'http://202.70.84.165/img/student/'.$result[1].'.jpg' ?>" alt="Student picture">
+                    <img src="<?= strpos($result[1],'<>')?'no-pic.png':'http://<>/'.$result[1].'.jpg' ?>" alt="Student picture">
                 </div>
                 <div class="roll">Roll: <?= $result[1] ?></div>
                 <div class="popular">Popularity: <?= $result[2] ?></div>
