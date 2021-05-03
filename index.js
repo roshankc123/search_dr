@@ -200,7 +200,7 @@ function loopForEachCard(response, appending_parent){
 
         var back_img = document.createElement("div");
             back_img.className="back-img";
-            var img_url = response[i][1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[i][1]}.jpg`;
+            var img_url = response[i][1].indexOf('<>')!=-1 ? "no-pic.png" : `<>/${response[i][1]}.jpg`;
             back_img.style.backgroundImage='url('+ img_url + ')';
         var roll = document.createElement("div");
             roll.className="roll";
@@ -240,7 +240,7 @@ function prevOrNextVisit(offset, for_="prev"){
 }
 
 function visitContentBuilder(response, offset, for_=null){
-    var img_src = response[1].indexOf('AS076')!=-1 ? "no-pic.png" : `http://202.70.84.165/img/student/${response[1]}.jpg`;
+    var img_src = response[1].indexOf('<>')!=-1 ? "no-pic.png" : `<>/${response[1]}.jpg`;
     console.log(for_);
     if(for_ && for_!="random"){
         document.querySelector(".visit-container div:first-child div.name").innerHTML=response[0];
